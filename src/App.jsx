@@ -26,9 +26,9 @@ function App() {
     }, [isLogin]);
 
     /*
-  로그인(LoginForm.jsx) or 로그아웃(Header.jsx) 될 때 로그인여부 상태 값을 변경할 이벤트
-  handleLoginChange 와 isLogin 를 사용해야 하는 컴포넌트들이 여럿이기에 createContext 를 이용하여 서로 공유할수 있도록 한다.
-  */
+    로그인(LoginForm.jsx) or 로그아웃(Header.jsx) 될 때 로그인 여부 상태 값을 변경할 이벤트
+    handleLoginChange 와 isLogin 를 사용해야 하는 컴포넌트들이 여럿이기에 createContext 를 이용하여 서로 공유할수 있도록 한다.
+    */
     const handleLoginChange = (isLogin) => {
         setIsLogin(isLogin);
     };
