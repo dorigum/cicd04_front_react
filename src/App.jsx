@@ -15,7 +15,7 @@ import {createContext, useEffect, useState} from "react";
 export const LoginContext = createContext();
 
 function App() {
-    // 로그인 여부를 판단하는 상태 변수 (true이면 로그인, false 로그아웃)
+    // 로그인 여부를 판단하는 상태 변수 (true 로그인, false 로그아웃)
     const [isLogin, setIsLogin] = useState(false);
 
     // 컴포넌트가 mount or update 될 때 로그인 여부에 따른 상태 값 변경
@@ -34,7 +34,6 @@ function App() {
     };
 
     return (
-
         <div className="App">
             <LoginContext.Provider
                 value={{isLogin: isLogin, handleLoginChange: handleLoginChange}}>
@@ -53,7 +52,6 @@ function App() {
                 <Footer/>
             </LoginContext.Provider>
         </div>
-
     )
 }
 
