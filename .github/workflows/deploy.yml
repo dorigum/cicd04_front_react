@@ -39,41 +39,7 @@ jobs:
           host: ${{secrets.EC2_HOST}}         # EC2의 IP
           username: ${{secrets.EC2_USERNAME}} # 로그인 사용자명
           key: ${{secrets.EC2_SSH_KEY}}       # SSH 개인 키
-
-         # 7. Slack 알림 전송
-      - name: Notify to Slack
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: GitHub Actions
-          SLACK_ICON_EMOJI: ':rocket:'
-          SLACK_TITLE: '     EC2 배포 완료'
-          SLACK_MESSAGE: 'Main 브랜치에 push됨 → EC2에 배포가 성공적으로 완료되었습니다!        '
-          SLACK_COLOR: good
-
-
-        # Slack 알림 - 성공 시 - name: Notify to Slack on Success
-        if: success()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: GitHub Actions
-          SLACK_ICON_EMOJI: ':rocket:'
-          SLACK_TITLE: '     배포 성공'
-          SLACK_MESSAGE: 'Main 브랜치에 push됨 → EC2에 성공적으로 배포되었습니다-추카추카!        '
-          SLACK_COLOR: good
-
-        # Slack 알림 - 실패 시 - name: Notify to Slack on Failure
-        if: failure()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}  # Slack에서 생성한 Webhook URL (GitHub Secrets로 관리)
-          SLACK_USERNAME: GitHub Actions
-          SLACK_ICON_EMOJI: ':x:'
-          SLACK_TITLE: '배포 실패'
-          SLACK_MESSAGE: 'Main 브랜치에 push됨 → EC2 배포 중 오류가 발생했습니다. 확인이 필요합니다.'
-          SLACK_COLOR: danger
-          script: |
+          script: |                            # 접속 후 실행할 명령어 목록
             cd ~/react-cicd                   
             docker compose down          
             docker compose up -d --build
